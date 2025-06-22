@@ -1,50 +1,64 @@
 # 📘 PhotoBook SwiftUI App
 
-Một ứng dụng SwiftUI tối giản (MVP) cho phép người dùng tạo sách ảnh cá nhân sau mỗi chuyến đi chơi, sự kiện, hoặc kỷ niệm đáng nhớ. Người dùng có thể chọn template, đặt tên photobook, thêm từng trang với ảnh + chú thích và xem lại album với giao diện đẹp mắt.
+Ứng dụng SwiftUI cho phép người dùng tạo photobook điện tử cá nhân hóa sau các chuyến đi chơi, kỷ niệm,... Người dùng có thể chọn template với layout cố định, đặt tên cuốn sách ảnh, thêm từng trang gồm ảnh + chú thích, và xem lại album với giao diện đẹp mắt.
 
-----
+---
 
 ## 🎯 Mục tiêu sản phẩm
 
-- Tạo một photobook điện tử cá nhân hóa.
 - Cho phép người dùng:
-  - Chọn **mẫu template** có sẵn.
-  - Đặt **tên cuốn sách ảnh**.
-  - Thêm từng trang ảnh với **ảnh từ thư viện** và **ghi chú ngắn**.
-  - **Xem lại album** với layout dễ nhìn.
-- Giao diện đơn giản, đẹp, phù hợp học sinh – sinh viên hoặc người mới học lập trình SwiftUI.
+  - Chọn **template layout** từ danh sách có sẵn.
+  - Đặt tên cuốn **photobook**.
+  - Thêm từng **trang ảnh** (1 hoặc nhiều ảnh tùy layout).
+  - Nhập **chú thích ngắn** cho ảnh.
+  - **Xem lại photobook** với giao diện tương ứng layout template đã chọn.
 
 ---
 
 ## 🛠️ Các chức năng chính
 
-### 1. 📖 Template chọn bìa photobook
-- Người dùng chọn một trong nhiều mẫu template có sẵn (màu sắc, font, hình bìa...).
-- Có thể đặt tên cho photobook (VD: *Summer 2025*, *Trip to Đà Lạt*...).
+### 1. 📖 Chọn template & đặt tên photobook
+- Template có sẵn gồm: Classic, Collage, Polaroid...
+- Mỗi template quy định **layout cố định** cho toàn bộ các trang (VD: Classic = 1 ảnh/trang, Collage = 2 ảnh/trang).
+- Template được hiển thị bằng **preview trực quan** (khung xám mô tả layout từng trang).
+- Người dùng đặt tên cho cuốn sách (VD: “Trip to Đà Lạt”, “Summer Memories 2025”).
 
 ### 2. 🖼️ Thêm trang ảnh
-- Người dùng chọn ảnh từ **thư viện máy**.
-- Thêm **chú thích ngắn** cho từng ảnh (VD: "Hồ Xuân Hương lúc sáng", "ăn bánh căn nè").
-- Ảnh và chú thích được lưu lại như một "trang" của cuốn sách.
+- Chọn ảnh từ **thư viện máy (PHPicker)**.
+- Nhập chú thích cho từng ảnh.
+- App kiểm tra **số ảnh đúng với layout template đã chọn** (VD: template Collage yêu cầu đúng 2 ảnh/trang).
+- Không cho thêm trang nếu chưa đủ ảnh phù hợp với layout.
 
-### 3. 👀 Xem lại photobook
-- Dùng `ScrollView` hoặc `TabView` để xem lần lượt từng ảnh như lật trang sách.
-- Mỗi ảnh có hiển thị chú thích dưới hình.
-- Giao diện tinh gọn, dễ nhìn, tối ưu cho điện thoại.
-
-
-## 📚 Kiến thức SwiftUI áp dụng
-- `@State`, `@ObservedObject`, `@StateObject`, `@Binding`
-- `List`, `Form`, `ScrollView`, `NavigationView`, `TabView`
-- `PHPickerViewController` tích hợp chọn ảnh từ thư viện (via `UIViewControllerRepresentable`)
-- Lưu dữ liệu với `UserDefaults` hoặc `FileManager` (tuỳ phiên bản)
-- Tuỳ biến UI theo template đã chọn
+### 3. 📚 Xem lại photobook
+- Dùng `ScrollView` hoặc `TabView` để hiển thị lần lượt từng trang.
+- Layout mỗi trang được hiển thị đúng theo **template đã chọn**.
+- Có thể chỉnh sửa, xoá trang, hoặc thêm mới.
 
 ---
 
-## 🚀 Phát triển tương lai (vượt MVP)
-- Cho phép sắp xếp lại thứ tự trang ảnh
-- Tạo nhiều photobook, quản lý mỗi cuốn như 1 "folder"
-- Export sang PDF (nâng cao)
-- Chế độ Dark Mode
-- Thêm ảnh nền hoặc sticker, font chữ đẹp
+## 📂 Cấu trúc dữ liệu
+
+- `Template`: quy định layout và style (VD: Classic, Polaroid).
+- `PhotoBook`: gồm title + template + danh sách trang (`PhotoPage`).
+- `PhotoPage`: chứa ảnh và chú thích, định dạng theo layout template.
+
+---
+
+## 📚 Kiến thức SwiftUI áp dụng
+
+- `@State`, `@Binding`, `@StateObject`, `@ObservedObject`
+- `TabView`, `ScrollView`, `NavigationView`
+- `PHPickerViewController` qua `UIViewControllerRepresentable`
+- Tuỳ biến layout qua enum `TemplateLayout`
+- Hiển thị preview layout template
+- Kiểm tra logic dữ liệu phù hợp layout trước khi thêm
+
+---
+
+## 🚀 Phát triển tương lai
+
+- Tạo nhiều photobook, chuyển đổi giữa các album.
+- Hỗ trợ chia sẻ hoặc xuất PDF.
+- Dark Mode, font chữ đẹp, sticker,...
+- Drag & drop để sắp xếp lại trang.
+- Template có layout động (cho phép chọn layout từng trang sau này).

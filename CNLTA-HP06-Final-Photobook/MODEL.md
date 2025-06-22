@@ -1,7 +1,8 @@
-
-
 # 📦 Data Model – MyPhotoBook SwiftUI App
 
+Một cấu trúc dữ liệu đầy đủ cho app **sách ảnh cá nhân**, hỗ trợ chọn template, tạo nhiều trang ảnh với chú thích, và lưu layout tùy theo từng template.
+
+---
 
 ## 🧱 1. Các Model chính
 
@@ -10,65 +11,74 @@
 ```swift
 struct PhotoBook: Identifiable, Codable {
     var id: UUID = UUID()
-    var title: String         // Tên cuốn sách (VD: "Trip to Đà Lạt")
-    var template: Template    // Mẫu giao diện đã chọn
-    var pages: [PhotoPage]    // Các trang trong cuốn sách
+    var title: String
+    var template: Template
+    var pages: [PhotoPage]
 }
-```
+📌 Gồm:
 
-📌 **Giải thích:**
+title: Tên do người dùng nhập.
 
-* `title`: Tên do người dùng nhập khi tạo photobook.
-* `template`: Lưu lại mẫu người dùng chọn (xem chi tiết bên dưới).
-* `pages`: Danh sách các trang ảnh trong photobook.
+template: Thông tin giao diện bìa & layout.
 
----
+pages: Danh sách trang ảnh.
 
-### ✅ `PhotoPage` – đại diện cho **một trang trong sách**
-
-```swift
+✅ PhotoPage – đại diện cho một trang trong sách
+swift
+Copy
+Edit
 struct PhotoPage: Identifiable, Codable {
     var id: UUID = UUID()
-    var imageData: Data       // Ảnh dưới dạng binary (nén từ UIImage)
-    var caption: String       // Ghi chú của người dùng
-    var date: Date            // Ngày tạo trang
+    var imageDataList: [Data]   // Mảng ảnh (cho phép 1–n ảnh tuỳ layout)
+    var captions: [String]      // Mảng chú thích (mỗi ảnh 1 caption)
+    var date: Date              // Ngày tạo
 }
-```
+📌 Ghi chú:
 
-📌 **Giải thích:**
+Hỗ trợ layout có nhiều ảnh (VD: 2 ảnh/trang).
 
-* `imageData`: Dùng để lưu ảnh đã chọn (từ thư viện).
-* `caption`: Nội dung chú thích ảnh (VD: "Chợ đêm Đà Lạt").
-* `date`: (tuỳ chọn) để sắp xếp theo thời gian.
+Ảnh và caption được lưu đồng bộ.
 
----
-
-### ✅ `Template` – đại diện cho **giao diện bìa**
-
-```swift
+✅ Template – đại diện cho mẫu bìa và bố cục
+swift
+Copy
+Edit
 struct Template: Identifiable, Codable {
     var id: UUID = UUID()
-    var name: String            // Tên template (VD: "Pastel Pink")
-    var backgroundColor: Color  // Màu nền chính (hoặc lưu dạng Hex/String nếu dùng UserDefaults)
-    var fontName: String        // Font chữ
-    var coverImageName: String  // Tên ảnh dùng làm hình bìa
+    var name: String
+    var backgroundColorHex: String   // VD: "#FFDDEE"
+    var fontName: String
+    var coverImageName: String
+    var layout: TemplateLayout
+    var previewImageName: String     // Ảnh mô tả layout khung xám
 }
-```
+📌 Gồm:
 
-📌 **Giải thích:**
+layout: Kiểu trình bày cố định cho tất cả trang trong sách.
 
-* Template giúp cá nhân hoá mỗi cuốn sách ảnh theo màu & phong cách.
+previewImageName: Dùng để hiện layout mẫu trực quan trong danh sách chọn template.
 
----
+✅ TemplateLayout – đại diện cho kiểu bố cục trang
+swift
+Copy
+Edit
+enum TemplateLayout: String, Codable {
+    case fullImage           // 1 ảnh to toàn trang
+    case imageWithCaption    // 1 ảnh + caption bên dưới
+    case twoImages           // 2 ảnh chia đôi trang
+}
+📂 2. Lưu trữ dữ liệu
+Trong PhotoBookViewModel.swift:
 
-## 📂 2. Lưu trữ dữ liệu
+swift
+Copy
+Edit
+@Published var photoBooks: [PhotoBook] = [] {
+    didSet {
+        saveBooks()
+    }
+}
 
-### ✅ Lưu danh sách PhotoBook:
-
-* Dùng `@Published var photoBooks: [PhotoBook]` trong `PhotoBookViewModel`
-* Lưu và tải với `UserDefaults` hoặc `FileManager`
-
-```swift
 func saveBooks() {
     if let encoded = try? JSONEncoder().encode(photoBooks) {
         UserDefaults.standard.set(encoded, forKey: "SavedPhotoBooks")
@@ -81,27 +91,30 @@ func loadBooks() {
         self.photoBooks = decoded
     }
 }
-```
+📌 Tips:
 
----
+Nếu ảnh nặng, dùng FileManager để lưu ảnh ngoài rồi chỉ lưu đường dẫn.
 
-## 📚 Tổng kết luồng dữ liệu
+📚 Tổng kết luồng dữ liệu
+Thành phần    Vai trò    Quan hệ
+PhotoBook    Cuốn sách    Gồm nhiều PhotoPage, gắn với Template
+PhotoPage    Một trang    Chứa 1 hoặc nhiều ảnh + caption
+Template    Giao diện mẫu    Gồm style bìa + bố cục TemplateLayout
+TemplateLayout    Loại bố cục    Áp dụng cố định cho mọi trang trong sách
+PhotoBookViewModel    Quản lý dữ liệu    Chứa danh sách photobook
+UserDefaults    Lưu dữ liệu đơn giản    Lưu toàn bộ JSON
+previewImageName    Hình preview layout    Giúp người dùng chọn template dễ hình dung
 
-| Thành phần                 | Vai trò         | Mối quan hệ                                |
-| -------------------------- | --------------- | ------------------------------------------ |
-| `PhotoBook`                | Cuốn sách chính | Gồm nhiều `PhotoPage`, gắn với `Template`  |
-| `PhotoPage`                | Một trang ảnh   | Chứa ảnh + chú thích                       |
-| `Template`                 | Giao diện mẫu   | Quyết định kiểu hiển thị bìa               |
-| `PhotoBookViewModel`       | Quản lý dữ liệu | Chứa danh sách tất cả photobook            |
-| `UserDefaults/FileManager` | Lưu trữ cục bộ  | Lưu lại các photobook sau mỗi lần thêm/sửa |
+💡 Gợi ý mở rộng
+Cho phép người dùng chọn layout từng trang (hiện đang áp dụng 1 layout cho cả sách).
 
----
+Thêm hỗ trợ đổi màu nền từng trang.
 
-👉 **Gợi ý mở rộng:**
+Giao diện preview layout tương tác — xem thử từng trang mẫu trước khi chọn.
 
-* Cho phép nhiều photobook, mỗi photobook như một "folder".
-* Cho phép export thành PDF, chia sẻ.
-* Hỗ trợ drag-drop reorder trang trong photobook.
+Thêm watermark logo hoặc ký tên cuối sách.
+
+
 
 
 
