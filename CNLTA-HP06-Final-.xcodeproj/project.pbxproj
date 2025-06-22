@@ -58,6 +58,7 @@
 				501086532E07ADCD00F12254 /* Components */,
 				501086452E07AA3500F12254 /* CNLTA_HP06_Final_PhotobookApp.swift */,
 				501086472E07AA3500F12254 /* ContentView.swift */,
+				501086562E07AE1E00F12254 /* README.md */,
 				501086492E07AA3A00F12254 /* Assets.xcassets */,
 				5010864B2E07AA3A00F12254 /* Preview Content */,
 			);
@@ -68,7 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */,
-				501086562E07AE1E00F12254 /* README.md */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";

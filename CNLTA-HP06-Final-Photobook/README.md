@@ -2,7 +2,7 @@
 
 Một ứng dụng SwiftUI tối giản (MVP) cho phép người dùng tạo sách ảnh cá nhân sau mỗi chuyến đi chơi, sự kiện, hoặc kỷ niệm đáng nhớ. Người dùng có thể chọn template, đặt tên photobook, thêm từng trang với ảnh + chú thích và xem lại album với giao diện đẹp mắt.
 
----
+----
 
 ## 🎯 Mục tiêu sản phẩm
 
