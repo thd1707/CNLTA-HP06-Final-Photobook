@@ -12,6 +12,7 @@
 		5010864A2E07AA3A00F12254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501086492E07AA3A00F12254 /* Assets.xcassets */; };
 		5010864D2E07AA3A00F12254 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */; };
 		501086572E07AE1E00F12254 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 501086562E07AE1E00F12254 /* README.md */; };
+		501086592E07B5CF00F12254 /* MODEL.md in Resources */ = {isa = PBXBuildFile; fileRef = 501086582E07B5CF00F12254 /* MODEL.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		501086492E07AA3A00F12254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		501086562E07AE1E00F12254 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		501086582E07B5CF00F12254 /* MODEL.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MODEL.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,9 @@
 				501086532E07ADCD00F12254 /* Components */,
 				501086452E07AA3500F12254 /* CNLTA_HP06_Final_PhotobookApp.swift */,
 				501086472E07AA3500F12254 /* ContentView.swift */,
-				501086562E07AE1E00F12254 /* README.md */,
 				501086492E07AA3A00F12254 /* Assets.xcassets */,
+				501086582E07B5CF00F12254 /* MODEL.md */,
+				501086562E07AE1E00F12254 /* README.md */,
 				5010864B2E07AA3A00F12254 /* Preview Content */,
 			);
 			path = "CNLTA-HP06-Final-Photobook";
@@ -152,6 +155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501086592E07B5CF00F12254 /* MODEL.md in Resources */,
 				501086572E07AE1E00F12254 /* README.md in Resources */,
 				5010864D2E07AA3A00F12254 /* Preview Assets.xcassets in Resources */,
 				5010864A2E07AA3A00F12254 /* Assets.xcassets in Resources */,
