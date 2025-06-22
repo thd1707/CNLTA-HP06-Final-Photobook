@@ -11,6 +11,7 @@
 		501086482E07AA3500F12254 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501086472E07AA3500F12254 /* ContentView.swift */; };
 		5010864A2E07AA3A00F12254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501086492E07AA3A00F12254 /* Assets.xcassets */; };
 		5010864D2E07AA3A00F12254 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */; };
+		501086572E07AE1E00F12254 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 501086562E07AE1E00F12254 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		501086472E07AA3500F12254 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		501086492E07AA3A00F12254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		501086562E07AE1E00F12254 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,9 @@
 		501086442E07AA3500F12254 /* CNLTA-HP06-Final-Photobook */ = {
 			isa = PBXGroup;
 			children = (
+				501086552E07ADE400F12254 /* Models */,
+				501086542E07ADD800F12254 /* Views */,
+				501086532E07ADCD00F12254 /* Components */,
 				501086452E07AA3500F12254 /* CNLTA_HP06_Final_PhotobookApp.swift */,
 				501086472E07AA3500F12254 /* ContentView.swift */,
 				501086492E07AA3A00F12254 /* Assets.xcassets */,
@@ -63,8 +68,30 @@
 			isa = PBXGroup;
 			children = (
 				5010864C2E07AA3A00F12254 /* Preview Assets.xcassets */,
+				501086562E07AE1E00F12254 /* README.md */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		501086532E07ADCD00F12254 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		501086542E07ADD800F12254 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		501086552E07ADE400F12254 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5010863D2E07AA3500F12254 /* Build configuration list for PBXProject "CNLTA-HP06-Final-Photobook" */;
+			buildConfigurationList = 5010863D2E07AA3500F12254 /* Build configuration list for PBXProject "CNLTA-HP06-Final-" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,6 +152,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501086572E07AE1E00F12254 /* README.md in Resources */,
 				5010864D2E07AA3A00F12254 /* Preview Assets.xcassets in Resources */,
 				5010864A2E07AA3A00F12254 /* Assets.xcassets in Resources */,
 			);
@@ -323,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5010863D2E07AA3500F12254 /* Build configuration list for PBXProject "CNLTA-HP06-Final-Photobook" */ = {
+		5010863D2E07AA3500F12254 /* Build configuration list for PBXProject "CNLTA-HP06-Final-" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5010864E2E07AA3A00F12254 /* Debug */,
